@@ -1,19 +1,20 @@
-package main
+package stores
 
 import (
 	"database/sql"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"log"
 )
 
 func ConnectionHelper() *sql.DB {
 	db, err := sql.Open("mysql",
 		"root:vignesh@(127.0.0.1:3306)/amexglobalinsdb?parseTime=true")
-	if err == nil {
-		fmt.Println("Connection Error occurred", err)
-	} else {
-		fmt.Println("Connection Created")
+	if err != nil {
+		log.Fatal(err)
 	}
-
+	if err := db.Ping(); err != nil {
+		log.Fatal(err)
+	}
 	return db
+
 }
