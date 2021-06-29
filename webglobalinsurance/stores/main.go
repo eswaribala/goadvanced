@@ -45,6 +45,26 @@ func ReadAllPolicyHolders() ([]*domain.PolicyHolder, error) {
 	return policyHolders, nil
 }
 
+//PolicyHolder By Id
+
+func GetPolicyHolder(aadharCardNo string) (*domain.PolicyHolder, error) {
+
+	var policyHolder *domain.PolicyHolder
+	db.First(&policyHolder, aadharCardNo)
+	return policyHolder, nil
+}
+
 //Update PolicyHolder
+func UpdatePolicyHolder(updatedPolicyHolder domain.PolicyHolder) domain.PolicyHolder {
+
+	db.Save(&updatedPolicyHolder)
+	return updatedPolicyHolder
+
+}
 
 //Delete PolicyHolder
+func DeletePolicyHolder(aadharCardNo string) {
+
+	db.Where("aadhaar_card_no = ?", aadharCardNo).Delete(&domain.PolicyHolder{})
+
+}
