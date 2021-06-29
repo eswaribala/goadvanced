@@ -22,14 +22,14 @@ func ConnectionHelper() {
 
 	// Create the database. This is a one-time step.
 	// Comment out if running multiple times - You may see an error otherwise
-	db.Exec("CREATE DATABASE amexdb")
+	//db.Exec("CREATE DATABASE amexdb")
 	db.Exec("USE amexdb")
 
 	// Migration to create tables for Order and Item schema
-	db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, &domain.Vehicle{})
-}
+	//db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, &domain.Vehicle{})
 
-//create PolicyHolder
+	db.AutoMigrate(&domain.PolicyHolder{})
+}
 
 func CreatePolicyHolder(policyHolder domain.PolicyHolder) domain.PolicyHolder {
 

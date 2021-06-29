@@ -1,9 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/goadvanced/webglobalinsurance/handlers"
+	"github.com/goadvanced/webglobalinsurance/stores"
 	"github.com/gorilla/mux"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -14,6 +17,16 @@ const (
 
 func main() {
 
+	data, _ := ioutil.ReadFile("config.json")
+	//fmt.Println(data)
+
+	//define interface
+	var result map[string]interface{}
+	//convert
+	json.Unmarshal([]byte(data), &result)
+
+	//pending to read from external file
+	stores.ConnectionHelper()
 	router := mux.NewRouter()
 	// Create
 	router.HandleFunc("/policyholders", handlers.CreatePolicyHolderHandler).Methods("POST")

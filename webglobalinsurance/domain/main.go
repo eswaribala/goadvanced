@@ -12,10 +12,10 @@ type PolicyHolder struct {
 	AadhaarCardNo string    `json:"aadhaarCardNo" gorm:"primary_key"`
 	Name          FullName  `gorm:"embedded"`
 	DOB           time.Time `json:"dob"`
-	Policies      []Policy  `json:"policies" gorm:"foreignkey:AadhaarCardNo"`
+	//Policies      []Policy  `json:"policies" gorm:"foreignkey:AadhaarCardNo"`
 }
 
-type Policy struct {
+/*type Policy struct {
 	PolicyNo        int64     `json:"policyNo" gorm:"primary_key"`
 	StartDate       time.Time `json:"startDate"`
 	EndDate         time.Time `json:"endDate"`
@@ -31,3 +31,4 @@ type Vehicle struct {
 	DOP       time.Time `json:"dop"`
 	PolicyNo  int64     `json:"-"`
 }
+*/
