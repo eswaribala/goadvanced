@@ -49,9 +49,13 @@ func ReadAllPolicyHolders() ([]*domain.PolicyHolder, error) {
 
 func GetPolicyHolder(aadharCardNo string) (*domain.PolicyHolder, error) {
 
-	var policyHolder *domain.PolicyHolder
-	db.First(&policyHolder, aadharCardNo)
-	return policyHolder, nil
+	var policyHolder domain.PolicyHolder
+	//db.First(&policyHolder, aadharCardNo)
+	if result := db.Where("aadhaar_card_no = ?", aadharCardNo).First(&policyHolder); result.Error != nil {
+		fmt.Println(result.Error)
+	}
+
+	return &policyHolder, nil
 }
 
 //Update PolicyHolder
