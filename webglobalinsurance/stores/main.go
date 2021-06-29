@@ -28,3 +28,23 @@ func ConnectionHelper() {
 	// Migration to create tables for Order and Item schema
 	db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, &domain.Vehicle{})
 }
+
+//create PolicyHolder
+
+func CreatePolicyHolder(policyHolder domain.PolicyHolder) domain.PolicyHolder {
+
+	db.Create(policyHolder)
+	return policyHolder
+}
+
+//Read all the PolicyHolders
+
+func ReadAllPolicyHolders() ([]*domain.PolicyHolder, error) {
+	var policyHolders []*domain.PolicyHolder
+	db.Find(&policyHolders)
+	return policyHolders, nil
+}
+
+//Update PolicyHolder
+
+//Delete PolicyHolder
