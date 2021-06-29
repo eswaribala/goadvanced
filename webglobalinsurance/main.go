@@ -26,7 +26,7 @@ func main() {
 	// Delete
 	router.HandleFunc("/policyholders/{aadhaarCardNo}", handlers.DeletePolicyHolderHandler).Methods("DELETE")
 
-	err := http.ListenAndServe(CONN_HOST+":"+CONN_PORT, nil)
+	err := http.ListenAndServe(CONN_HOST+":"+CONN_PORT, router)
 	if err != nil {
 		fmt.Println("Error in creating connection")
 	}
