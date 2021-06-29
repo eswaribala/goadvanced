@@ -12,18 +12,19 @@ type PolicyHolder struct {
 	AadhaarCardNo string    `json:"aadhaarCardNo" gorm:"primary_key"`
 	Name          FullName  `gorm:"embedded"`
 	DOB           time.Time `json:"dob"`
-	//Policies      []Policy  `json:"policies" gorm:"foreignkey:AadhaarCardNo"`
+	Policies      []Policy  `json:"policies" gorm:"foreignkey:AadhaarCardNo"`
 }
 
-/*type Policy struct {
-	PolicyNo        int64     `json:"policyNo" gorm:"primary_key"`
-	StartDate       time.Time `json:"startDate"`
-	EndDate         time.Time `json:"endDate"`
-	InsuredAmount   int32     `json:"insuredAmount"`
-	AadhaarCardNo   string    `json:"-"`
-	VehicleInstance Vehicle   `json:"vehicleInstance" gorm:"foreignkey:PolicyNo"`
+type Policy struct {
+	PolicyNo      int64     `json:"policyNo" gorm:"primary_key"`
+	StartDate     time.Time `json:"startDate"`
+	EndDate       time.Time `json:"endDate"`
+	InsuredAmount int32     `json:"insuredAmount"`
+	AadhaarCardNo string    `json:"-"`
+	//VehicleInstance Vehicle   `json:"vehicleInstance" gorm:"foreignkey:PolicyNo"`
 }
 
+/*
 type Vehicle struct {
 	RegNo     string    `json:"regNo" gorm:"primary_key"`
 	Brand     string    `json:"brand"`

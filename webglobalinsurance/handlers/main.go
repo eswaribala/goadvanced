@@ -26,6 +26,7 @@ func GetPolicyHolderHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	aadharCardNo := params["aadhaarCardNo"]
+	fmt.Println(aadharCardNo)
 	policyHolder, _ := stores.GetPolicyHolder(aadharCardNo)
 	json.NewEncoder(w).Encode(policyHolder)
 }

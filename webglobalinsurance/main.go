@@ -10,11 +10,6 @@ import (
 	"net/http"
 )
 
-const (
-	CONN_HOST = "localhost"
-	CONN_PORT = "7070"
-)
-
 func main() {
 
 	data, _ := ioutil.ReadFile("config.json")
@@ -24,8 +19,9 @@ func main() {
 	var result map[string]interface{}
 	//convert
 	json.Unmarshal([]byte(data), &result)
+	host := result["host"].(string) + ":" + result["port"].(string)
+	fmt.Println(host)
 
-	//pending to read from external file
 	stores.ConnectionHelper()
 	router := mux.NewRouter()
 	// Create
@@ -39,7 +35,7 @@ func main() {
 	// Delete
 	router.HandleFunc("/policyholders/{aadhaarCardNo}", handlers.DeletePolicyHolderHandler).Methods("DELETE")
 
-	err := http.ListenAndServe(CONN_HOST+":"+CONN_PORT, router)
+	err := http.ListenAndServe(string(host), router)
 	if err != nil {
 		fmt.Println("Error in creating connection")
 	}

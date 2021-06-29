@@ -28,7 +28,7 @@ func ConnectionHelper() {
 	// Migration to create tables for Order and Item schema
 	//db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, &domain.Vehicle{})
 
-	db.AutoMigrate(&domain.PolicyHolder{})
+	db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{})
 }
 
 func CreatePolicyHolder(policyHolder domain.PolicyHolder) domain.PolicyHolder {
@@ -41,7 +41,7 @@ func CreatePolicyHolder(policyHolder domain.PolicyHolder) domain.PolicyHolder {
 
 func ReadAllPolicyHolders() ([]*domain.PolicyHolder, error) {
 	var policyHolders []*domain.PolicyHolder
-	db.Find(&policyHolders)
+	db.Preload("Policies").Find(&policyHolders)
 	return policyHolders, nil
 }
 
@@ -51,7 +51,7 @@ func GetPolicyHolder(aadharCardNo string) (*domain.PolicyHolder, error) {
 
 	var policyHolder domain.PolicyHolder
 	//db.First(&policyHolder, aadharCardNo)
-	if result := db.Where("aadhaar_card_no = ?", aadharCardNo).First(&policyHolder); result.Error != nil {
+	if result := db.Where("aadhaar_card_no = ?", aadharCardNo).Preload("Policies").First(&policyHolder); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 
