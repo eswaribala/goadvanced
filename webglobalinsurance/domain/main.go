@@ -20,8 +20,8 @@ type Policy struct {
 	StartDate       time.Time `json:"startDate"`
 	EndDate         time.Time `json:"endDate"`
 	InsuredAmount   int32     `json:"insuredAmount"`
-	AadhaarCardNo   string
-	VehicleInstance Vehicle `json:"vehicleInstance" gorm:"foreignkey:PolicyNo"`
+	AadhaarCardNo   string    `json:"-"`
+	VehicleInstance Vehicle   `json:"vehicleInstance" gorm:"foreignkey:PolicyNo"`
 }
 
 type Vehicle struct {
@@ -29,5 +29,5 @@ type Vehicle struct {
 	Brand     string    `json:"brand"`
 	ModelName string    `json:"modelName"`
 	DOP       time.Time `json:"dop"`
-	PolicyNo  int64
+	PolicyNo  int64     `json:"-"`
 }

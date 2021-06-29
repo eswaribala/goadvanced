@@ -7,21 +7,24 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func ConnectionHelper() *gorm.DB {
+var db *gorm.DB
 
-	connectionString := "root:vignesh@tcp(localhost:3306)/?parseTime=True"
-	db, err := gorm.Open("mysql", connectionString)
+func ConnectionHelper() {
+
+	var err error
+	dataSourceName := "root:vignesh@tcp(localhost:3306)/?parseTime=True"
+	db, err = gorm.Open("mysql", dataSourceName)
 
 	if err != nil {
-		fmt.Println("Connection Not Established")
+		fmt.Println(err)
+		panic("failed to connect database")
 	}
+
 	// Create the database. This is a one-time step.
 	// Comment out if running multiple times - You may see an error otherwise
 	db.Exec("CREATE DATABASE amexdb")
 	db.Exec("USE amexdb")
 
 	// Migration to create tables for Order and Item schema
-	db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, domain.Vehicle{})
-
-	return db
+	db.AutoMigrate(&domain.PolicyHolder{}, &domain.Policy{}, &domain.Vehicle{})
 }
