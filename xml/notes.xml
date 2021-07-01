@@ -1,6 +1,20 @@
+<notes>
 <note>
-    <to>Tove</to>
+    <to>A</to>
     <from>Jani</from>
     <heading>Reminder</heading>
     <body>Don't forget me this weekend!</body>
 </note>
+<note>
+    <to>B</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+</note>
+<note>
+    <to>C</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+</note>
+</notes>
