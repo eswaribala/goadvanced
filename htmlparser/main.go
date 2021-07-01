@@ -25,6 +25,12 @@ func ExampleScrape() {
 	}
 
 	fmt.Println(doc.Find("#wp > main > h1").First().Text())
+
+	fmt.Println(doc.Find("#zh").Text())
+
+	doc.Find("#zb > table > tbody > tr").Each(func(i int, s *goquery.Selection) {
+		fmt.Println(s.Find("td").Text())
+	})
 	/*
 		// Find the review items
 		doc.Find(".question-summary .summary").Each(func(i int, s *goquery.Selection) {
