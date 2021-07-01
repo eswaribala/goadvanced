@@ -7,8 +7,8 @@ import (
 )
 
 type Notes struct {
-	XMLName      xml.Name `xml:"users"`
-	noteInstance []Note   `xml:"user"`
+	XMLName      xml.Name `xml:"notes"`
+	noteInstance []Note   `xml:"note"`
 }
 
 type Note struct {
@@ -21,10 +21,10 @@ type Note struct {
 func main() {
 	data, _ := ioutil.ReadFile("notes.xml")
 
-	notes := &Notes{}
+	var notes Notes
 
-	_ = xml.Unmarshal([]byte(data), &notes)
-
+	xml.Unmarshal([]byte(data), &notes)
+	fmt.Println(len(notes.noteInstance))
 	for i := 0; i < len(notes.noteInstance); i++ {
 		fmt.Println(notes.noteInstance[i].To)
 		fmt.Println(notes.noteInstance[i].From)
