@@ -9,7 +9,7 @@ import (
 
 func ExampleScrape() {
 	// Request the HTML page.
-	res, err := http.Get("https://stackoverflow.com/questions/tagged/javascript")
+	res, err := http.Get("https://rates.goldenchennai.com/gold-rate/chennai-gold-rate-today/")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -24,11 +24,15 @@ func ExampleScrape() {
 		log.Fatal(err)
 	}
 
-	// Find the review items
-	doc.Find(".question-summary .summary").Each(func(i int, s *goquery.Selection) {
-		title := s.Find("H3").Text()
-		fmt.Println(i, title)
-	})
+	fmt.Println(doc.Find("#wp > main > h1").First().Text())
+	/*
+		// Find the review items
+		doc.Find(".question-summary .summary").Each(func(i int, s *goquery.Selection) {
+			title := s.Find("H3").Text()
+			fmt.Println(i, title)
+		})
+	*/
+
 }
 
 func main() {
