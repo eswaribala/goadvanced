@@ -7,8 +7,8 @@ import (
 )
 
 type Notes struct {
-	XMLName      xml.Name `xml:"notes"`
-	noteInstance []Note   `xml:"note"`
+	XMLName  xml.Name `xml:"notes"`
+	NoteList []Note   `xml:"note"`
 }
 
 type Note struct {
@@ -24,11 +24,11 @@ func main() {
 	var notes Notes
 
 	_ = xml.Unmarshal([]byte(data), &notes)
-	fmt.Println(len(notes.noteInstance))
-	//for i := 0; i < len(notes.noteInstance); i++ {
-	//	fmt.Println(notes.noteInstance[0].To)
-	//	fmt.Println(notes.noteInstance[i].From)
-	//	fmt.Println(notes.noteInstance[i].Heading)
-	//	fmt.Println(notes.noteInstance[i].Body)
-	//}
+	fmt.Println(len(notes.NoteList))
+	for i := 0; i < len(notes.NoteList); i++ {
+		fmt.Println(notes.NoteList[0].To)
+		fmt.Println(notes.NoteList[i].From)
+		fmt.Println(notes.NoteList[i].Heading)
+		fmt.Println(notes.NoteList[i].Body)
+	}
 }
