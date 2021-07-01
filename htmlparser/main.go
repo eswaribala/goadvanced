@@ -5,6 +5,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func ExampleScrape() {
@@ -32,6 +33,12 @@ func ExampleScrape() {
 		fmt.Println(s.Find("td").Text())
 	})
 
+	len := doc.Find("#tb > tbody > tr").Length()
+	for i := 1; i < len; i++ {
+		doc.Find("#tb > tbody > tr:nth-child(" + strconv.Itoa(i) + ")").Each(func(i int, s *goquery.Selection) {
+			fmt.Println(s.Find("td").Text())
+		})
+	}
 }
 
 func main() {
