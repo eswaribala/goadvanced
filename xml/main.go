@@ -20,15 +20,15 @@ type Note struct {
 
 func main() {
 	data, _ := ioutil.ReadFile("notes.xml")
-
+	//fmt.Println(len(data))
 	var notes Notes
 
-	xml.Unmarshal([]byte(data), &notes)
+	_ = xml.Unmarshal([]byte(data), &notes)
 	fmt.Println(len(notes.noteInstance))
-	for i := 0; i < len(notes.noteInstance); i++ {
-		fmt.Println(notes.noteInstance[i].To)
-		fmt.Println(notes.noteInstance[i].From)
-		fmt.Println(notes.noteInstance[i].Heading)
-		fmt.Println(notes.noteInstance[i].Body)
-	}
+	//for i := 0; i < len(notes.noteInstance); i++ {
+	//	fmt.Println(notes.noteInstance[0].To)
+	//	fmt.Println(notes.noteInstance[i].From)
+	//	fmt.Println(notes.noteInstance[i].Heading)
+	//	fmt.Println(notes.noteInstance[i].Body)
+	//}
 }
