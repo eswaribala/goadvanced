@@ -31,13 +31,6 @@ func ExampleScrape() {
 	doc.Find("#zb > table > tbody > tr").Each(func(i int, s *goquery.Selection) {
 		fmt.Println(s.Find("td").Text())
 	})
-	/*
-		// Find the review items
-		doc.Find(".question-summary .summary").Each(func(i int, s *goquery.Selection) {
-			title := s.Find("H3").Text()
-			fmt.Println(i, title)
-		})
-	*/
 
 }
 
